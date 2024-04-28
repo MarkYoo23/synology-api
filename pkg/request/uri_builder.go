@@ -27,7 +27,7 @@ func (u UriBuilder) Build() string {
 	}
 
 	if u.Sid != "" {
-		query.Set("sid", u.Sid)
+		query.Set("_sid", u.Sid)
 	}
 
 	return fmt.Sprintf("/webapi/%s?%s", u.CgiPath, query.Encode())

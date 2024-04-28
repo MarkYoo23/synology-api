@@ -1,61 +1,35 @@
 package client
 
 import (
-	"encoding/json"
-	"errors"
 	"io"
 	"net/http"
 	"synology-api/pkg/request"
-	"synology-api/pkg/response"
 	"time"
 )
 
 type Client struct {
-	host string
+	serverName string
+	host       string
+
+	// if the client is authenticated
+	deviceId  string
+	sessionId string
 }
 
-func NewClient(url string) *Client {
+func NewClient(serverName, url string) *Client {
 	return &Client{
-		host: url,
+		serverName: serverName,
+		host:       url,
 	}
-}
-
-func (c *Client) GetApiInfo() (*response.ApiInfo, error) {
-	b := request.UriBuilder{
-		CgiPath: request.ApiCgiQuery,
-		ApiName: request.ApiNameInfo,
-		Version: 1,
-		Method:  request.ApiMethodQuery,
-		Params: map[request.ApiParam]string{
-			request.ApiParamQuery: "SYNO.API.Auth,SYNO.FileStation",
-		},
-	}
-
-	status, bytes, err := c.get(b)
-	if err != nil {
-		return nil, err
-	}
-
-	if status != http.StatusOK {
-		return nil, errors.New("failed to retrieve API")
-	}
-
-	var r response.ApiInfo
-
-	err = json.Unmarshal(bytes, &r)
-	if err != nil {
-		return nil, err
-	}
-
-	return &r, nil
 }
 
 func (c *Client) get(builder request.UriBuilder) (statusCode int, body []byte, err error) {
-	clt := c.newHttpClient(time.Second * 3)
+	clt := c.newHttpClient(time.Second * 10)
 
-	r, err := clt.Get(c.host + builder.Build())
+	url := c.host + builder.Build()
+	r, err := clt.Get(url)
 	if err != nil {
-		return r.StatusCode, nil, err
+		return 404, nil, err
 	}
 
 	defer func(Body io.ReadCloser) {
