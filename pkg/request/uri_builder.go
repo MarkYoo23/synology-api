@@ -5,7 +5,7 @@ import (
 	"net/url"
 )
 
-// UriBuilder webapi/<CGI_PATH>?api=<API_NAME>&version=<VERSION>&method=<METHOD>[&<PARAMS>][&_sid=<SID>]
+// UriBuilder webapi/<FEATURE>/<CGI_PATH>?api=<API_NAME>&version=<VERSION>&method=<METHOD>[&<PARAMS>][&_sid=<SID>]
 type UriBuilder struct {
 	CgiPath ApiCgi
 	ApiName ApiName
@@ -30,5 +30,8 @@ func (u UriBuilder) Build() string {
 		query.Set("_sid", u.Sid)
 	}
 
-	return fmt.Sprintf("/webapi/%s?%s", u.CgiPath, query.Encode())
+	uri := "/webapi"
+	uri += "/" + string(u.CgiPath)
+
+	return fmt.Sprintf("%s?%s", uri, query.Encode())
 }
