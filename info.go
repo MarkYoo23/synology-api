@@ -3,8 +3,8 @@ package synology_api
 import (
 	"encoding/json"
 	"errors"
-	"github.com/MarkYoo/synology-api/request"
-	"github.com/MarkYoo/synology-api/response"
+	"github.com/MarkYoo23/synology-api/request"
+	"github.com/MarkYoo23/synology-api/response"
 	"net/http"
 )
 
