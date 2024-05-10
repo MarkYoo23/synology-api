@@ -1,9 +1,9 @@
-package client
+package synology_api
 
 import (
+	"github.com/MarkYoo/synology-api/request"
 	"io"
 	"net/http"
-	"synology-api/pkg/request"
 	"time"
 )
 

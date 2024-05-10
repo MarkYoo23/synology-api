@@ -1,4 +1,4 @@
-package client
+package synology_api
 
 import (
 	"encoding/json"

@@ -1,12 +1,12 @@
-package client
+package synology_api
 
 import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/MarkYoo/synology-api/request"
+	"github.com/MarkYoo/synology-api/response"
 	"net/http"
-	"synology-api/pkg/request"
-	"synology-api/pkg/response"
 )
 
 func (c *Client) Login(id, pw string) error {
