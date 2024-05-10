@@ -1,7 +1,7 @@
 package synology_api
 
 import (
-	"github.com/MarkYoo/synology-api/request"
+	"github.com/MarkYoo23/synology-api/request"
 	"io"
 	"net/http"
 	"time"
