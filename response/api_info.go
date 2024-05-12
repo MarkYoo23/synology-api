@@ -1,12 +1,13 @@
 package response
 
+type ApiInfoData map[string]struct {
+	MaxVersion    int    `json:"maxVersion"`
+	MinVersion    int    `json:"minVersion"`
+	Path          string `json:"path"`
+	RequestFormat string `json:"requestFormat"`
+}
+
 type ApiInfo struct {
-	Data struct {
-		SYNOAPIAuth struct {
-			MaxVersion int    `json:"maxVersion"`
-			MinVersion int    `json:"minVersion"`
-			Path       string `json:"path"`
-		} `json:"SYNO.API.Auth"`
-	} `json:"data"`
-	Success bool `json:"success"`
+	ApiInfoData `json:"data"`
+	Success     bool `json:"success"`
 }
