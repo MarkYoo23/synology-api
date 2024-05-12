@@ -59,6 +59,7 @@ func (c *Client) Logout() error {
 		Sid: c.sessionId,
 	}
 
+	// TODO : return logout response
 	statusCode, bytes, err := c.get(b)
 	if err != nil {
 		return err

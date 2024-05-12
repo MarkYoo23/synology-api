@@ -8,4 +8,5 @@ const (
 	ApiMethodLogout          ApiMethod = "logout"
 	ApiMethodShareFolderList ApiMethod = "list_share"
 	ApiMethodFolderList      ApiMethod = "list"
+	ApiMethodFileDownload    ApiMethod = "download"
 )

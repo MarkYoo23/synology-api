@@ -6,7 +6,7 @@ import (
 )
 
 func TestRetrieveApiInfo(t *testing.T) {
-	var client = NewClient("your_synology_server_name", "your_synology_url")
+	var client = NewClient("yoo", "http://192.168.0.101:5000")
 	info, err := client.GetApiInfo()
 	if err != nil {
 		t.Error(err)

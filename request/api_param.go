@@ -12,4 +12,7 @@ const (
 
 	ApiParamFolderPath       ApiParam = "folder_path"
 	ApiParamFolderAdditional ApiParam = "additional"
+
+	ApiParamDownloadPath ApiParam = "path"
+	ApiParamDownloadMode ApiParam = "mode"
 )
